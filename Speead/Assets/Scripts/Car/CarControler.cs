@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CarControler : MonoBehaviour 
@@ -21,6 +22,9 @@ public class CarControler : MonoBehaviour
     [SerializeField] private int _motorForse;
     [SerializeField] private int _whelsAngleMax = 50;
     
+    [SerializeField] private bool _fourWheelDrive;
+    [SerializeField] private bool _frontWheelDrive;
+    [SerializeField] private bool _rearWheelDrive;
     
     [SerializeField] float movingDorection;
     private void Start()
@@ -38,20 +42,45 @@ public class CarControler : MonoBehaviour
 
     private void Move()
     {
-
         _speed = _rb.linearVelocity.magnitude;
 
         _horizontalInput = _inputServis.horizontalInput;
         _vertocalInput = _inputServis.verticalInput;
 
+        if(_fourWheelDrive == true)
+        {
+
         foreach (Wheel wheel in _wheels)
         {
             wheel._wheelCollider.motorTorque = _vertocalInput * _motorForse;
-            
         }
-        
+        }
+        if (_rearWheelDrive)
+        {
+            foreach (Wheel wheel in _wheels )
+            {
+                if (wheel._isForvord == false)
+                    wheel._wheelCollider.motorTorque = _vertocalInput * _motorForse * 2;
+                else
+                     wheel._wheelCollider.motorTorque = 0;
+            }
+        }
+        if (_frontWheelDrive)
+        {
+            foreach (Wheel wheel in _wheels)
+            {
+                if (wheel._isForvord )
+                    wheel._wheelCollider.motorTorque = _vertocalInput * _motorForse * 2;
+                else
+                    wheel._wheelCollider.motorTorque = 0;
+            }
+
+        }
+
+
     }
-    
+
+
     private void Steeting()
     {
         float steeringAngle = _horizontalInput * _steeringCuve.Evaluate(_speed);
@@ -61,6 +90,8 @@ public class CarControler : MonoBehaviour
             steeringAngle += Vector3.SignedAngle(_Car.forward, _rb.linearVelocity, Vector3.up);
 
         steeringAngle = Mathf.Clamp(steeringAngle, -_whelsAngleMax, _whelsAngleMax);
+        Debug.Log($"Horizontal Input: {_horizontalInput}");
+
 
         foreach (Wheel wheel in _wheels)
         {
