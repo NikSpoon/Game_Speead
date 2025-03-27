@@ -604,6 +604,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _wheelMash: {fileID: 3794951908810334882}
   _wheelCollider: {fileID: 2716459193614891142}
+  _isForvord: 0
 --- !u!1 &3962000127133956386
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,6 +724,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _wheelMash: {fileID: 9188640840458259854}
   _wheelCollider: {fileID: 3145262460232535540}
+  _isForvord: 0
 --- !u!1 &4163942240364048118
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,6 +1012,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _wheelMash: {fileID: 948405438201742482}
   _wheelCollider: {fileID: 4795950753765878369}
+  _isForvord: 0
 --- !u!1 &8288384950464101879
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,3 +1147,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _wheelMash: {fileID: 28636839611146925}
   _wheelCollider: {fileID: 1057494946909100755}
+  _isForvord: 0
